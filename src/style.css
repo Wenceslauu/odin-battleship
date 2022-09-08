@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+:root {
+    --border-radius: 10px;
+    --light-blue: #dbeafe;
+    --hover-light-blue: #bfdbfe;
+    --dark-blue: #1e40af;
+    --red: #991b1b;
+    --green: #22c55e;
+    --light-grey: #e4e4e7;
+    --grey: #71717a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    position: relative;
+}
+
+body {
+    height: 100%;
+    font-family: 'Bebas Neue', cursive;
+
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.header {
+    background-color: var(--dark-blue);
+    padding: 25px;
+    text-align: center;
+    color: white;
+    font-size: 3rem;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.fleet {
+    position: absolute;
+    top: 26%;
+    left: 5%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 230px;
+    height: 375px;
+    background-color: var(--light-grey);
+    padding-top: 13px;
+    border: 4px solid var(--grey)
+}
+
+.ship-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+}
+
+.ship {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.fleet input {
+    display: none;
+}
+
+.toggle-container {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width:  60px;
+    height: 30px;
+}
+
+.toggle-label {
+    position: relative;
+    display: block;
+    width:  60px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.sliding-groove {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--light-blue);
+    background: var(--light-blue) 85% no-repeat url('./assets/arrow-right-thin.png');
+    outline: 2px solid var(--grey);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.sliding-groove::after {
+    position: absolute;
+    content: '';
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: white;
+    top: 1px;
+    left: 1px;
+    transition: all 0.3s ease;
+}
+
+input:checked + .sliding-groove {
+    background: var(--light-blue) 15% no-repeat url('./assets/arrow-down-thin.png');
+}
+
+input:checked + .sliding-groove::after {
+    transform: translateX(30px);
+}
+
+.game {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    padding-top: 30px;
+}
+
+.board {
+    text-align: center;
+}
+
+.board p {
+    font-size: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
+    cursor: crosshair;
+}
+
+.cell {
+    height: 40px;
+    width: 40px;
+    background-color: var(--light-blue);
+    border: 1px solid black;
+}
+
+.cell:hover {
+    background-color: var(--hover-light-blue);
+}
+
+.cell:-moz-drag-over {
+    background-color: var(--grey);
+}
+
+.cell.isShip {
+    background-color: var(--grey);
+}
+
+.cell.hit {
+    background-color: var(--green);
+}
+
+.cell.miss {
+    background-color: var(--red);
+}
+
+.subtitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    padding-bottom: 50px;
+    font-size: 1.2rem;
+}
+
+.subtitle .sample {
+    text-align: center;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    border-radius: var(--border-radius);
+
+    transform: translate(-50%, -50%) scale(0);
+    transition: 0.2s ease-in-out;
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal.start {
+    background-color: black;
+}
+
+.modal.end {
+    font-size: 3rem;
+    padding: 50px;
+    gap: 25px;
+}
+
+button {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.5rem;
+    padding: 10px 30px;
+    border-radius: var(--border-radius);
+    border: 4px solid black;
+    background-color: #3b82f6;
+    color: white;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0, 0, 0, 0.5);
+    display: none
+}
+
+.overlay.active {
+    display: block;
+}
+
+.main-content > button {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.7rem;
+    padding: 10px 30px;
+    background-color: var(--red);
+}
