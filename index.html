@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battleship</title>
+    <script src="bundle.js" defer></script>
+</head>
+<body>
+    <div class="header">Battleship</div>
+    <div class="main-content">
+        <div class="fleet">
+            <div class="ship-container"></div>
+            <div class="toggle-container">
+                <input type="checkbox" name="direction" id="direction">
+                <div class="sliding-groove"></div>
+                <label for="direction" class="toggle-label"></label>
+            </div>
+        </div>
+        <div class="game">
+            <div class="board left">
+                <p>Your board</p>
+                <div class="grid"></div>
+            </div>
+            <div class="board right">
+                <p>Enemy board</p>
+                <div class="grid"></div>
+            </div>
+        </div>
+        <div class="subtitle">
+            <div class="sample">
+                <div class="cell hit"></div>
+                <p>= Hit</p>
+            </div>
+            <div class="sample">
+                <div class="cell miss"></div>
+                <p>= Miss</p>
+            </div>
+        </div>
+        <button>Restart Game</button>
+        <div class="modal start active">
+            <button>Start Game</button>
+        </div>
+        <div class="overlay active"></div>
+    </div>
+</body>
+</html>
